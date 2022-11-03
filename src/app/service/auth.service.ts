@@ -24,7 +24,8 @@ export class AuthService {
   }
 
   async logout() {
-    return await this.auth.signOut();
+    localStorage.clear();
+    this.auth.signOut();
   }
 
   async login(email: string, password: string) {
@@ -32,16 +33,14 @@ export class AuthService {
   }
 
   async register(email: string, password:string): Promise<any> {
-    const resp = await this.auth.createUserWithEmailAndPassword(email, password).then( () => {
+    const resp = await this.auth.createUserWithEmailAndPassword(email, password);
       this.sendEmailVerification()
-      return resp;
-
-    }).catch((error) => console.log(error))
-
+      
+    return resp;
   }
 
   getUser() {
-    let localstorage = localStorage.getItem('user_clinica');
+    let localstorage = localStorage.getItem('usuario-clinica');
     if( localstorage != null) {
       return JSON.parse(localstorage);
     }

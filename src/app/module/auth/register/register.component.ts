@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild("myModalConf", { static: false }) myModalConf?: TemplateRef<any>;
 
+  @Input() closed: boolean = false;
   @Input() tipo: string = '';
   @Output() seleccionReg = new EventEmitter<boolean>;
 
@@ -95,7 +96,7 @@ export class RegisterComponent implements OnInit {
         dni: form.DNI,
         email: form.email,
         password: form.password,
-        photoURL: form.pathImg,
+        photoURL: this.img1,
         tipoUsuario: this.tipo,
         estadoAcceso: 'Deshabilitado',
         especialidad: form.especialidad
@@ -146,8 +147,8 @@ export class RegisterComponent implements OnInit {
         dni: form.DNI,
         email: form.email,
         password: form.password,
-        photoURL: form.pathImg,
-        photoURL2: form.pathImg2,
+        photoURL: this.img1,
+        photoURL2: this.img2,
         tipoUsuario: this.tipo,
         obraSocial: form.obraSocial
       }
@@ -196,7 +197,7 @@ export class RegisterComponent implements OnInit {
         dni: form.DNI,
         email: form.email,
         password: form.password,
-        photoURL: form.pathImg,
+        photoURL: this.img1,
         tipoUsuario: this.tipo,
       }
 

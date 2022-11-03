@@ -20,11 +20,11 @@ export class UserService {
     return this.itemCollection.doc(id).set(Object.assign({}, { uid: id, ...item }));
   }
 
-  getUserByUid(uid:string){
+  getUserByUid(uid: string) {
     return this.getItemById(uid);
   }
 
-  protected getItemById(id:string){
+  protected getItemById(id: string) {
     return this.itemCollection.doc(id).get();
   }
   /* ESPECIALIDADES */
@@ -35,5 +35,16 @@ export class UserService {
 
   getEspecialidad() {
     return this.especialidadesCollection.valueChanges({ idfield: 'doc_id' });
+  }
+
+  /* ESPECIALISTAS */
+
+  getEspecialistas() {
+    return this.afs.collection('usuarios', ref => ref.where('tipoUsuario', '==', 'Especialista'))
+      .valueChanges({ idfield: "doc_id" });
+  }
+
+  updateAccess(id: string, access: string) {
+    return this.itemCollection.doc(id).update({ estadoAcceso: access })
   }
 }

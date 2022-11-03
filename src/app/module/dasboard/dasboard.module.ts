@@ -7,11 +7,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { PaneladminComponent } from './paneladmin/paneladmin.component';
+import { RegisterModule } from '../auth/register/register.module';
 
 
 @NgModule({
   declarations: [
-    DasboardComponent
+    DasboardComponent,
+    PaneladminComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatListModule,
     MatIconModule,
+    RegisterModule
   ]
 })
 export class DasboardModule { }

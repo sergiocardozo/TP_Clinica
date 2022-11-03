@@ -5,22 +5,24 @@
         [opened]="(isHandset$ | async) === false">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list class="d-flex flex-column align-items-center">
-        <button type="button" class="btn btn-outline-light">Usuarios</button>
-        <a mat-list-item href="#">Link 2</a>
+        <button type="button" class="btn btn-outline-light mb-2" *ngIf="isAdmin" routerLink="/dashboard/paneladmin">Usuarios</button>
+        <button type="button" class="btn btn-outline-light mb-2"  routerLink="/dashboard/paneladmin">Mis Turnos</button>
         <button type="button" class="btn btn-outline-danger" (click)="logout()">Salir</button>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar color="primary">
+      <mat-toolbar class="justify-content-between" color="primary">
         <button
-          type="button"
+        type="button"
           aria-label="Toggle sidenav"
           mat-icon-button
           (click)="drawer.toggle()"
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span>TP-Clinica</span>
+        
+        <span>Clinica-<strong>UTN</strong></span>
+        <span > <img src="{{image}}" alt="" class="imgRedonda me-2">{{email}}</span>
       </mat-toolbar>
       <router-outlet></router-outlet>
     </mat-sidenav-content>

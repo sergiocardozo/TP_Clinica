@@ -21,13 +21,13 @@ export class LoginComponent implements OnInit {
 
   ]
   pacientes: any[] = [
-    { email: 'jicago2505@harcity.com', password: '123456', imagen: './../../../assets/Langoni.jpg' },
-    { email: 'hisor43266@dmtubes.com', password: '123456', imagen: './../../../assets/Benedetto.jpg' },
-    { email: 'yajov94283@dmtubes.com', password: '123456', imagen: './../../../assets/Pol2.jpg' }
+    { email: 'generod147@harcity.com', password: '123456', imagen: './../../../assets/Langoni.jpg' },
+    { email: 'sonita4842@dmtubes.com', password: '123456', imagen: './../../../assets/Benedetto.jpg' },
+    { email: 'disav97274@dmtubes.com', password: '123456', imagen: './../../../assets/Pol2.jpg' }
   ]
   especialistas: any[] = [
-    { email: 'dinedot582@dmtubes.com', password: '123456', imagen: './../../../assets/Fabra.jpg' },
-    { email: 'feyoy30014@dmtubes.com', password: '123456', imagen: './../../../assets/Rossi.jpg' },
+    { email: 'hereyil442@fgvod.com', password: '123456', imagen: './../../../assets/Fabra.jpg' },
+    { email: 'walaba3480@fgvod.com', password: '123456', imagen: './../../../assets/Rossi.jpg' },
   ]
 
   constructor(private authSrv: AuthService,
@@ -58,12 +58,11 @@ export class LoginComponent implements OnInit {
     try {
       await this.authSrv.login(datos.email, datos.password).then(async (resp) => {
         const user = (await this.userSrv.getUserByUid('' + resp?.user?.uid).toPromise()).data();
-        console.log(user);
 
         switch (user.tipoUsuario) {
           case 'Paciente':
             if (resp?.user?.emailVerified) {
-              localStorage.setItem('usuario-clinica', JSON.stringify({ ...user }));
+              localStorage.setItem('user_clinica', JSON.stringify({ ...user }));
               this.spinnerSrv.hide();
               this.router.navigate(['/dashboard']);
             } else {

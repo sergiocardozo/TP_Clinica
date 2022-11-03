@@ -7,9 +7,8 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'auth', loadChildren: () => import('./module/auth/auth.module').then(m => m.AuthModule) },
-
   { path: 'dashboard', loadChildren: () => import('./module/dasboard/dasboard.module').then(m => m.DasboardModule) }
 
 ]
