@@ -1,0 +1,222 @@
+<app-loading></app-loading>
+<div class="row h-100 me-0">
+
+    <div class="col-sm-5 pe-0">
+        <mat-card class="h-100">
+
+            <form [formGroup]="formulario">
+
+                <mat-card-title>
+                    <h2 class="text-center">Registro {{tipo}}</h2>
+                </mat-card-title>
+
+                <mat-divider class="m-5"></mat-divider>
+
+                <mat-card-content>
+
+                    <div class="row register-form">
+
+                        <div class="col-md-6 mb-2">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" />
+                                <small class="form-text text-muted"
+                                    *ngIf="formulario.get('nombre')?.hasError('required') && formulario.get('nombre')?.touched">El
+                                    Nombre es
+                                    requerido.</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Apellido"
+                                    formControlName="apellido" />
+                                <small class="form-text text-muted"
+                                    *ngIf="formulario.get('apellido')?.hasError('required') && formulario.get('apellido')?.touched">El
+                                    apellido es
+                                    requerido.</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Edad" formControlName="edad" />
+                                <small class="form-text text-muted"
+                                    *ngIf="formulario.get('edad')?.hasError('required') && formulario.get('edad')?.touched">La
+                                    edad es
+                                    requerida.</small>
+                                <small id="edadHelp2" class="form-text text-muted"
+                                    *ngIf="formulario.get('edad')?.hasError('min') && formulario.get('edad')?.touched">La
+                                    edad minima es
+                                    18.</small>
+                                <small id="edadHelp2" class="form-text text-muted"
+                                    *ngIf="formulario.get('edad')?.hasError('max') && formulario.get('edad')?.touched">La
+                                    edad maxima es
+                                    99.</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="DNI" formControlName="DNI" />
+                                <small class="form-text text-muted"
+                                    *ngIf="formulario.get('dni')?.hasError('required') && formulario.get('dni')?.touched">El
+                                    dni es requerido.</small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group mb-2">
+                            <input type="file" class="form-control" (change)="cambioArchivo($event,1)"
+                                formControlName="pathImg">
+                            <small class="form-text text-muted"> {{mensajeImagen}} </small>
+                            <small class="form-text text-muted"
+                                *ngIf="formulario.get('pathImg')?.hasError('required') && formulario.get('pathImg')?.touched">El
+                                archivo es requerida.</small>
+
+
+                            <small class="form-text text-muted"
+                                *ngIf="formulario.get('pathImg')?.hasError('imagenCargada') ">
+                                es requerido.</small>
+                        </div>
+
+                        <div class="form-group mb-2" *ngIf="tipo === 'Paciente'">
+                            <input type="file" class="form-control" (change)="cambioArchivo($event,2)"
+                                formControlName="pathImg2">
+                            <small class="form-text text-muted"> {{mensajeImagen}} </small>
+                            <small class="form-text text-muted"
+                                *ngIf="formulario.get('pathImg2')?.hasError('required') && formulario.get('pathImg2')?.touched">El
+                                archivo es requerida.</small>
+
+
+                            <small class="form-text text-muted"
+                                *ngIf="formulario.get('pathImg')?.hasError('imagenCargada') ">
+                                es requerido.</small>
+                        </div>
+
+                        <div class="col-md-6" *ngIf="tipo === 'Paciente'">
+
+                            <div class="form-group mb-2">
+                                <input type="text" class="form-control" placeholder="Obra Social"
+                                    formControlName="obraSocial" />
+                                <small class="form-text text-muted"
+                                    *ngIf="formulario.get('obraSocial')?.hasError('required') && formulario.get('obraSocial')?.touched">La
+                                    obraSocial es requerida.</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" *ngIf="tipo === 'Especialista'">
+
+                            <div class="form-group mb-2">
+                                <select class="form-control" formControlName="especialidad">
+                                    <option  class="hidden" selected disabled>Selecciona una especialidad
+                                    </option>
+                                    <option *ngFor="let espe of especialidades" value="{{espe.nombre}}">{{espe.nombre}}</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div *ngIf="tipo === 'Especialista'" class="row">
+                            <div class="col-md-6">
+                                <button mat-raised-button (click)="openDialog()">Agregar Especialidad</button>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group mb-2">
+                            <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+                            <small class="form-text text-muted"
+                                *ngIf="formulario.get('email')?.hasError('required') && formulario.get('email')?.touched">El
+                                email es
+                                requerido.</small>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Contraseña"
+                                    formControlName="password" />
+                                <small class="form-text text-muted"
+                                    *ngIf="formulario.get('password')?.hasError('required') && formulario.get('password')?.touched">La
+                                    clave es
+                                    requerida.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Confirmar Contraseña"
+                                    formControlName="confirmarPass" />
+                                <small class="form-text text-muted"
+                                    *ngIf="formulario.get('clave')?.hasError('required') && formulario.get('clave')?.touched">La
+                                    clave es
+                                    requerida.</small>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </mat-card-content>
+
+                <mat-divider class="m-2"></mat-divider>
+                <mat-card-footer class="d-flex flex-column align-items-center">
+
+                    <button mat-flat-button class="m-2 col-md-6 " color="warn" (click)="register()">Registrate</button>
+                    <p class="small fw-bold mt-2 pt-1 mb-0">Ya tenes cuenta ?
+                        <a routerLink="/auth/login" class="link-danger">
+                            <strong>Ingresa</strong>
+                        </a>
+                    </p>
+
+                </mat-card-footer>
+                <app-alert-error [message]="message" *ngIf="error === true"></app-alert-error>
+
+            </form>
+        </mat-card>
+
+    </div>
+    <div class="col-sm-7 imagen">
+        <app-validar-mail *ngIf="display"></app-validar-mail>
+        <button class="btn-close" (click)="cerrarVentana()"></button>
+    </div>
+</div>
+
+<ng-template #myModalConf let-modal>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Agregar Especialidad</h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]='formulario_Especialidad' >
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Especialidad:</label>
+                    <div class="input-group">
+
+                    </div>
+                    <input type="text" class="form-control" id="recipient-name" formControlName='nombre'>
+                    <small class="form-text text-muted"
+                        *ngIf="formulario_Especialidad.get('nombre')?.hasError('required') && formulario_Especialidad.get('nombre')?.touched">El
+                        nombre de la especialidad es requerido.</small>
+                </div>
+                <div class="d-flex">
+
+                    <button type="submit" class="btn btn-success" (click)="modal.close()" (click)="aceptarEspecialidad()">Agregar</button>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                (click)="modal.close('Save click')">Cerrar</button>
+        </div>
+    </div>
+
+</ng-template>

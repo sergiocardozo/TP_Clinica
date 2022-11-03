@@ -1,0 +1,21 @@
+<div class="container mt-5">
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title text-center">Gracias por registrarte!</h3>
+            <div class="form-group">
+                <p class="text-center">
+                    Te enviamos un mail de confirmación a {{usuario}}!
+                </p>
+                <p class="text-center">
+                    Por favor, revisar el email y hacer click en el link para verificarlo.
+                </p>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary" (click)="reenviar()"> Reenviar email de verificación</button>
+                <button class="btn btn-danger m-2" (click)="volver()"> Volver Home</button>
+
+            </div>
+        </div>
+    </div>
+</div>

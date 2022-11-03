@@ -1,0 +1,34 @@
+<div *ngIf="displayOption" class="container d-flex flex-column align-items-center">
+    <h1 class="text-center"><strong> Seleccionar Tipo de Usuario</strong></h1>
+    <div  class="general m-5 d-flex justify-content-center">
+        <div class="tamaño d-flex align-items-center">
+            <div class="d-flex">
+                <div class=" m-5 ">
+                    <img (click)="seleccionarTipo( 'Especialista' )" class="card-img-top rounded-circle e  "
+                        src="https://i.pinimg.com/736x/d7/64/18/d76418f406971b8b0c02d158e159d920.jpg" alt="">
+                </div>
+
+                <div class="m-5">
+
+                    <img (click)="seleccionarTipo( 'Paciente' )" class="card-img-top rounded-circle e  "
+                        src="https://img.freepik.com/vector-gratis/ilustracion-vectorial-pequeno-personaje-dibujos-animados-lindo-paciente-hombre-roto-pierna-derecha-vendaje-yeso-o-pie-enyesado-muleta-axilar_52005-74.jpg?w=2000"
+                        alt="">
+                </div>
+
+                <div class="m-5" *ngIf="noMostrar">
+
+                    <img  (click)="seleccionarTipo( 'Administrador' )" class="card-img-top rounded-circle e  "
+                        src="https://img.freepik.com/vector-gratis/ilustracion-vectorial-pequeno-personaje-dibujos-animados-lindo-paciente-hombre-roto-pierna-derecha-vendaje-yeso-o-pie-enyesado-muleta-axilar_52005-74.jpg?w=2000"
+                        alt="">
+                </div>
+            </div>
+        </div>
+        
+    </div >
+    <button type="button" class="btn btn-success " style="width: 500px;" routerLink="/home">Volver a Home</button>
+
+</div>
+
+<app-register *ngIf="displayRegistro" [tipo]=" tipoUsuario">
+    <button class="btn-close">ACA ESTOY</button>
+</app-register>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "tp-clinica-56602"
+  },
+  "targets": {
+    "tp-clinica-56602": {
+      "hosting": {
+        "TP-Clinica": [
+          "tp-clinica-56602"
+        ]
+      }
+    }
+  }
+}

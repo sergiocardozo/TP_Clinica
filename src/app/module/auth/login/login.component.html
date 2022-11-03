@@ -1,0 +1,73 @@
+<app-loading></app-loading>
+<div class="row h-100 me-0">
+    <div class="col-sm-7 imagen">
+
+    </div>
+    <div class="col-sm-4 mt-2 d-flex justify-content-center align-items-center">
+        <form class="h-100" [formGroup]="formulario">
+
+            <h2 class="text-center">Ingreso Clinica-UTN</h2>
+
+            <div class="form-outline mb-4">
+                <input formControlName="email" type="email" class="form-control form-control-lg" placeholder="Email"
+                    autocomplete="off" value="{{ formulario.value['email'] }}" />
+            </div>
+
+            <div class="form-outline mb-3">
+                <input type="password" class="form-control form-control-lg" placeholder="Password" autocomplete="off"
+                    formControlName="password" value="{{formulario.value['password']}}" />
+            </div>
+
+          
+            <div class="d-flex flex-column text-lg-start mt-4 pt-2">
+                <button class="btn btn-primary btn-lg" (click)="login()">Login
+                </button>
+                <app-alert-error [message]="message" *ngIf="error === true"></app-alert-error>
+                <p class="small fw-bold mt-2 pt-1 mb-0 text-center">Don't have an account?
+                    <a routerLink="/auth/seleccionarusuario" class="link-danger">
+                        Register
+                    </a>
+                </p>
+
+            </div>
+
+            <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-2 mb-0">O</p>
+            </div>
+
+            <p class="lead fw-normal text-center mb-0 me-2">Sign in with</p>
+
+            <div class="d-flex flex-row align-items-center justify-content-between ">
+
+                <div *ngFor="let user of pacientes">
+
+                    <button type="button" class="btn btn-default " (click)="llenarForm( user )">
+                        <img src="{{user.imagen}}" alt="imagen usuario" class="imgRedonda">
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-row align-items-center ">
+                <div *ngFor="let user of especialistas">
+
+                    <button type="button" class="btn btn-default" (click)="llenarForm( user )">
+                        <img src="{{user.imagen}}" alt="imagen usuario" class="imgRedonda">
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="d-flex flex-row align-items-center">
+                <div *ngFor="let user of usuarios">
+
+                    <button type="button" class="btn btn-default" (click)="llenarForm( user )">
+                        <img src="{{user.imagen}}" alt="imagen usuario" class="imgRedonda">
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
