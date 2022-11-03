@@ -12,12 +12,14 @@ export class AdminGuard implements CanActivate {
       let ls = localStorage.getItem('usuario-clinica');
 
       if( ls != null){
-        let userJson =    JSON.parse(ls); 
-        if(  userJson.perfil =='Administrador'){
+        let userJson = JSON.parse(ls); 
+        console.log(userJson);
+        if(  userJson.tipoUsuario === 'Administrador'){
           return true;
         }
       }else{
         return   false;
+        console.log('entro aca');
       }
 
       return false;
