@@ -1,0 +1,64 @@
+<div class="container d-flex h-100 justify-content-center align-items-center">
+
+    <mat-card class="d-flex flex-column bg-dark bg-gradient">
+        <mat-card-title>
+            <h2>Especialidades:</h2>
+        </mat-card-title>
+        <form [formGroup]='formularioEspecialidades'>
+
+            <div class="mb-3">
+                <div class="row">
+
+                    <mat-card class="col m-2 ">
+
+                        <mat-card-subtitle>
+
+                            <label for="recipient-name" class="col-form-label">Seleccionar Especialidades:</label>
+                        </mat-card-subtitle>
+
+                        <div *ngFor="let espe of especialidades">
+
+                            <input formControlName='especialidadCheck' type="checkbox" value="{{espe.nombre}}"
+                                (change)="selEsp($event)">
+                            {{espe.nombre}} <br>
+
+                            <small class="form-text text-muted"
+                                *ngIf="formularioEspecialidades.get('especialidadCheck')?.hasError('vacio') && formularioEspecialidades.get('especialidadCheck')?.touched">
+                                es requerido.</small>
+
+                        </div>
+
+                        <button class="btn btn-success" (click)="sendMessage()">Seleccionar</button>
+                    </mat-card>
+
+                    <div class="col">
+
+                        <mat-card class="m-2">
+                            <mat-card-subtitle>Agregar Especialidad</mat-card-subtitle>
+                            <input type="text" class="form-control mb-2" id="recipient-name" formControlName='nombre'>
+                            <small class="form-text text-muted"
+                                *ngIf="formularioEspecialidades.get('nombre')?.hasError('required') && formularioEspecialidades.get('nombre')?.touched">El
+                                nombre de la especialidad es requerido.</small>
+                            <div class="d-flex">
+                                <div class="form-group mb-2">
+                                    <input type="file" class="form-control" (change)="cambioArchivo($event)"
+                                        formControlName="pathImg">
+                                    <small class="form-text text-muted"
+                                        *ngIf="formularioEspecialidades.get('pathImg')?.hasError('required') && formularioEspecialidades.get('pathImg')?.touched">El
+                                        archivo es requerida.</small>
+
+
+                                    <small class="form-text text-muted"
+                                        *ngIf="formularioEspecialidades.get('pathImg')?.hasError('imagenCargada') ">
+                                        es requerido.</small>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success"
+                                (click)="aceptarEspecialidad()">Agregar</button>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card>
+</div>

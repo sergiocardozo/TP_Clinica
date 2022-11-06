@@ -5,6 +5,7 @@
         [opened]="(isHandset$ | async) === false">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list class="d-flex flex-column align-items-center">
+        <button type="button" class="btn btn-outline-light mb-2"  routerLink="/dashboard/miperfil">Mi Perfil</button>
         <button type="button" class="btn btn-outline-light mb-2" *ngIf="isAdmin" routerLink="/dashboard/paneladmin">Usuarios</button>
         <button type="button" class="btn btn-outline-light mb-2"  routerLink="/dashboard/paneladmin">Mis Turnos</button>
         <button type="button" class="btn btn-outline-danger" (click)="logout()">Salir</button>

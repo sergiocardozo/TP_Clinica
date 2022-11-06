@@ -12,6 +12,7 @@ import { AlertErrorModule } from '../../components/alert-error/alert-error.modul
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { CargaespecialidadModule } from '../cargaespecialidad/cargaespecialidad.module';
 
 
 
@@ -30,6 +31,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
     AlertErrorModule,
     ValidarMailModule,
+    CargaespecialidadModule
   ],
   exports: [RegisterComponent]
 })

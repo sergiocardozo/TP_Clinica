@@ -19,7 +19,6 @@ export class AdminGuard implements CanActivate {
         }
       }else{
         return   false;
-        console.log('entro aca');
       }
 
       return false;

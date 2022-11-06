@@ -15,6 +15,8 @@ export class DasboardComponent {
   email: string = '';
   image: string = '';
   isAdmin = false;
+  isEspecialista = false;
+  isPaciente = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -35,6 +37,10 @@ export class DasboardComponent {
       this.image = user.photoURL;
       if (user.tipoUsuario === 'Administrador') {
         this.isAdmin = true;
+      } else if(user.tipoUsuario === 'Especialista'){
+        this.isEspecialista = true;
+      } else {
+        this.isPaciente = true;
       }
     }
   }

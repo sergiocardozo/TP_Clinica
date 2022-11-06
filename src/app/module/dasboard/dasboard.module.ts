@@ -9,12 +9,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { PaneladminComponent } from './paneladmin/paneladmin.component';
 import { RegisterModule } from '../auth/register/register.module';
+import { MiperfilModule } from './miperfil/miperfil.module';
 
 
 @NgModule({
   declarations: [
     DasboardComponent,
-    PaneladminComponent
+    PaneladminComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +24,8 @@ import { RegisterModule } from '../auth/register/register.module';
     MatToolbarModule,
     MatListModule,
     MatIconModule,
-    RegisterModule
+    RegisterModule,
+    MiperfilModule
   ]
 })
 export class DasboardModule { }

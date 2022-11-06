@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
         switch (user.tipoUsuario) {
           case 'Paciente':
             if (resp?.user?.emailVerified) {
-              localStorage.setItem('user_clinica', JSON.stringify({ ...user }));
+              localStorage.setItem('usuario-clinica', JSON.stringify({ ...user }));
               this.spinnerSrv.hide();
               this.router.navigate(['/dashboard']);
             } else {

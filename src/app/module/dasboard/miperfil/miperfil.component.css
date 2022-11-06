@@ -1,0 +1,21 @@
+.imgRedonda {
+  width: 320px;
+  height: 320px;
+  border-radius: 160px;
+}
+
+.position {
+  display: inline-block;
+  position: relative;
+}
+
+.position button {
+  position: absolute;
+  bottom: -1em;
+  right: 0em;
+  border-radius: 1.5em;
+  padding: 1em 1.5em;
+}
+.bi {
+  font-size: 50px;
+}

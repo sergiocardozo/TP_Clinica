@@ -9,6 +9,7 @@ import { LoadingModule } from '../components/loading/loading.module';
 import { TipoUsuarioComponent } from './tipo-usuario/tipo-usuario.component';
 
 import { AlertErrorModule } from '../components/alert-error/alert-error.module';
+import { CargaespecialidadModule } from './cargaespecialidad/cargaespecialidad.module';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { AlertErrorModule } from '../components/alert-error/alert-error.module';
     RegisterModule,
     LoadingModule,
     AlertErrorModule,
-   
+    CargaespecialidadModule
   ]
 })
 export class AuthModule { }

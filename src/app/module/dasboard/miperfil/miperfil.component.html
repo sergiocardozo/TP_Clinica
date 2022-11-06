@@ -1,0 +1,107 @@
+<div class="container mt-2">
+    <h1 class="text-center">Mi Perfil </h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <mat-card class="example-card">
+                <mat-card-subtitle class="mb-3">{{user.tipoUsuario}}</mat-card-subtitle>
+                <mat-card-title class="text-center mb-4">{{user.nombre}} {{user.apellido}}</mat-card-title>
+                <mat-card-content class="text-center">
+                    <div class="position">
+                        <img *ngIf="img1" src="{{user.photoURL}}" alt="imagen1" class="imgRedonda">
+                        <img *ngIf="img2" src="{{user.photoURL2}}" alt="imagen2" class="imgRedonda">
+                        <button *ngIf="user.tipoUsuario == 'Paciente'" type="button" class="btn"
+                            (click)="cambiarImagen()"><i class="bi bi-camera2"></i></button>
+                    </div>
+                </mat-card-content>
+                <mat-divider inset class="mb-3"></mat-divider>
+                <mat-card-actions class="text-center">
+                    <button mat-button>Horarios</button>
+                </mat-card-actions>
+                <mat-card-footer>
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+
+
+        <div class="col">
+            <div class="col">
+                <mat-card>
+                    <mat-card-subtitle>Datos Usuario</mat-card-subtitle>
+                    <mat-card-content>
+                        <div class="row">
+
+                            <label class="col-md-4 fs-6"><strong class="text-uppercase">Nombre:</strong>
+                                {{user.nombre}}</label>
+                            <label class="col-md-4 fs-6"><strong class="text-uppercase">Apellido:</strong>
+                                {{user.apellido}}</label>
+
+                        </div>
+                        <div class="row">
+                            <label class="col-md-4 fs-6"><strong class="text-uppercase">DNI: </strong>
+                                {{ user.dni}}</label>
+                            <label class="col-md-4 fs-6"><strong
+                                    class="text-uppercase">Edad:</strong>{{user.edad}}</label>
+                        </div>
+
+                        <label class="col-md-12 fs-6"><strong class="text-uppercase">Email:</strong>
+                            {{user.email}}</label>
+                        <label *ngIf="user.tipoUsuario == 'Paciente'" class="col-md-12 fs-6"><strong
+                                class="text-uppercase">Obra Social:</strong> {{user.obraSocial}}</label>
+                        <label *ngIf="user.tipoUsuario == 'Especialista'" class="col-md-12 fs-6"><strong
+                                class="text-uppercase">Especialidad:</strong> {{user.especialidad}}</label>
+
+                    </mat-card-content>
+                    <mat-divider inset class="mb-3"></mat-divider>
+                </mat-card>
+
+            </div>
+
+            <div class="col mt-3">
+                <mat-card>
+                    <mat-card-subtitle>Mis horarios</mat-card-subtitle>
+                    <mat-card-content class="text-center">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <mat-card class="bg-primary bg-gradient">
+                                    <mat-card-content>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Dias</th>
+                                                    <th>Ingresos</th>
+                                                    <th>Salidas</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </mat-card-content>
+                                </mat-card>
+
+                            </div>
+                            <div class="col-md-4">
+                                <mat-card></mat-card>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-divider inset class="mb-3"></mat-divider>
+                    <mat-card-actions class="text-center">
+                        <button mat-button>Guardar</button>
+                        <button mat-button>Modificar</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
