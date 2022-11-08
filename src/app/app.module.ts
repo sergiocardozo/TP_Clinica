@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
+import { NoimagePipe } from './pipes/noimage.pipe';
 
 @NgModule({
   declarations: [

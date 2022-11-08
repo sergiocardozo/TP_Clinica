@@ -12,18 +12,22 @@ export class PaneladminComponent implements OnInit {
   displayRegistro: boolean = false;
   tipoUsuario: string = '';
   especialistas: Array<any> = [];
-  
+  especialidad: Array<any> = [];
   constructor(private userSrv: UserService) {
     this.userSrv.getEspecialistas().subscribe((data) => {
-      console.log(data);
+      
       this.especialistas = data;
+      this.especialistas.forEach(element => {
+        this.especialidad.push(element.especialidad.nombre);
+        
+      });  
     })
 
     
   }
 
   ngOnInit(): void {
-
+    
   }
   modificarAcceso(uid: string, acceso: string) {
     this.userSrv.updateAccess(uid,acceso);

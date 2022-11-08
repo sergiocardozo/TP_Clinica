@@ -13,7 +13,6 @@ export class AdminGuard implements CanActivate {
 
       if( ls != null){
         let userJson = JSON.parse(ls); 
-        console.log(userJson);
         if(  userJson.tipoUsuario === 'Administrador'){
           return true;
         }

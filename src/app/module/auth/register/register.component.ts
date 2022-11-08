@@ -75,6 +75,7 @@ export class RegisterComponent implements OnInit {
     const form = this.formulario.value;
     this.completarForm = false;
     if (this.tipo === 'Especialista') {
+      
       let datos = {
         nombre: form.nombre,
         apellido: form.apellido,

@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { PaneladminComponent } from './paneladmin/paneladmin.component';
 import { RegisterModule } from '../auth/register/register.module';
 import { MiperfilModule } from './miperfil/miperfil.module';
+import { SolicitarTurnoModule } from './solicitar-turno/solicitar-turno.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MiperfilModule } from './miperfil/miperfil.module';
     MatListModule,
     MatIconModule,
     RegisterModule,
-    MiperfilModule
+    MiperfilModule,
+    SolicitarTurnoModule
   ]
 })
 export class DasboardModule { }

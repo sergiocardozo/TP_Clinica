@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatDividerModule,
     MatProgressBarModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   exports: [MiperfilComponent]
 })

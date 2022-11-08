@@ -47,4 +47,10 @@ export class UserService {
   updateAccess(id: string, access: string) {
     return this.itemCollection.doc(id).update({ estadoAcceso: access })
   }
+
+  /* PACIENTES */
+
+  getPacientes() {
+    return this.afs.collection('usuarios', ref => ref.where('tipoUsuario', '==', 'Paciente')).valueChanges({ idField: "doc_id" })
+  }
 }
