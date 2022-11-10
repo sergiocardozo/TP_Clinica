@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   @Input() tipo: string = '';
   @Output() seleccionReg = new EventEmitter<boolean>;
 
+  captcha: boolean = false;
   displayEspecialidades: boolean = false;
   display: boolean = false;
   message: string = '';
@@ -66,16 +67,15 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  
+
 
   async register() {
 
-    console.log(this.especialidadesElegidas);
     this.spinnerSrv.show();
     const form = this.formulario.value;
     this.completarForm = false;
     if (this.tipo === 'Especialista') {
-      
+
       let datos = {
         nombre: form.nombre,
         apellido: form.apellido,
@@ -91,31 +91,33 @@ export class RegisterComponent implements OnInit {
       if (form.password === form.confirmarPass) {
 
         try {
+          if (this.captcha) {
 
-          await this.auth.register(datos.email, form.password).then((resp) => {
-            console.log(resp);
-            this.userSrv.setItemId(datos, resp.user.uid).then(() => {
-              this.display = true;
-              this.spinnerSrv.hide();
-              this.formulario.reset();
+            await this.auth.register(datos.email, form.password).then((resp) => {
+              console.log(resp);
+              this.userSrv.setItemId(datos, resp.user.uid).then(() => {
+                this.display = true;
+                this.spinnerSrv.hide();
+                this.formulario.reset();
+              })
+
+            }).catch(error => {
+              switch (error.code) {
+                case 'auth/email-already-exists':
+                  this.enviarMensajeError('El usuario ya existe')
+                  break;
+                case 'auth/invalid-email':
+                  this.enviarMensajeError('El email ingresado no es correcto');
+                  break;
+                case 'auth/user-not-found':
+                  this.enviarMensajeError('No existe registro con ese usuario');
+                  break;
+                default:
+                  this.enviarMensajeError(error.message);
+                  break;
+              }
             })
-
-          }).catch(error => {
-            switch (error.code) {
-              case 'auth/email-already-exists':
-                this.enviarMensajeError('El usuario ya existe')
-                break;
-              case 'auth/invalid-email':
-                this.enviarMensajeError('El email ingresado no es correcto');
-                break;
-              case 'auth/user-not-found':
-                this.enviarMensajeError('No existe registro con ese usuario');
-                break;
-              default:
-                this.enviarMensajeError(error.message);
-                break;
-            }
-          })
+          }
         } catch (error) {
           console.log(error);
         }
@@ -141,30 +143,35 @@ export class RegisterComponent implements OnInit {
       if (form.password === form.confirmarPass) {
 
         try {
+          if (this.captcha) {
 
-          await this.auth.register(datos.email, form.password).then((resp) => {
-            this.userSrv.setItemId(datos, resp.user.uid).then(() => {
-              this.display = true;
-              this.spinnerSrv.hide();
-              this.formulario.reset();
+            await this.auth.register(datos.email, form.password).then((resp) => {
+              this.userSrv.setItemId(datos, resp.user.uid).then(() => {
+                this.display = true;
+                this.spinnerSrv.hide();
+                this.formulario.reset();
+              })
+
+            }).catch(error => {
+              switch (error.code) {
+                case 'auth/email-already-exists':
+                  this.enviarMensajeError('El usuario ya existe')
+                  break;
+                case 'auth/invalid-email':
+                  this.enviarMensajeError('El email ingresado no es correcto');
+                  break;
+                case 'auth/user-not-found':
+                  this.enviarMensajeError('No existe registro con ese usuario');
+                  break;
+                default:
+                  this.enviarMensajeError(error.message);
+                  break;
+              }
             })
-
-          }).catch(error => {
-            switch (error.code) {
-              case 'auth/email-already-exists':
-                this.enviarMensajeError('El usuario ya existe')
-                break;
-              case 'auth/invalid-email':
-                this.enviarMensajeError('El email ingresado no es correcto');
-                break;
-              case 'auth/user-not-found':
-                this.enviarMensajeError('No existe registro con ese usuario');
-                break;
-              default:
-                this.enviarMensajeError(error.message);
-                break;
-            }
-          })
+          } else {
+            this.spinnerSrv.hide()
+            this.enviarMensajeError('completar captcha');
+          }
         } catch (error) {
           console.log(error);
         }
@@ -275,13 +282,17 @@ export class RegisterComponent implements OnInit {
     return new Date().getTime() + '-' + this.tipo;
   }
 
-  openEspecialidad(){
+  openEspecialidad() {
     this.displayEspecialidades = true;
   }
-  
-  reciboMensaje($event){
+
+  reciboMensaje($event) {
     this.especialidadesElegidas = $event;
     this.displayEspecialidades = false;
   }
 
+  validarCaptcha(value: any) {
+    console.log(value)
+    this.captcha = value
+  }
 }

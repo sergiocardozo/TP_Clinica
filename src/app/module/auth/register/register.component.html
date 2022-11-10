@@ -164,7 +164,7 @@
 
                 <mat-divider class="m-2"></mat-divider>
                 <mat-card-footer class="d-flex flex-column align-items-center">
-
+                    <app-captcha (captchaResult)="validarCaptcha($event)"></app-captcha>
                     <button mat-flat-button class="m-2 col-md-6 " color="warn" (click)="register()">Registrate</button>
                     <p class="small fw-bold mt-2 pt-1 mb-0">Ya tenes cuenta ?
                         <a routerLink="/auth/login" class="link-danger">

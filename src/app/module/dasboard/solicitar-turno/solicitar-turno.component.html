@@ -1,57 +1,85 @@
 <div class="container mt-3">
-    <div class="row">
+    <mat-card>
 
-        <div class="col-md-2">
+        <div class="row">
 
-            <mat-card>
-                <mat-card-subtitle>Selecciona una especialidad</mat-card-subtitle>
-                <mat-card-content>
-                    <div class="">
-                        <div *ngFor="let espe of listEspecialidades">
-                            <button class="d-flex flex-column align-items-center btn mb-1 btn-primary" style="width: 100%;">
-                                {{espe.nombre}}
-                                <img src="{{espe.pathImg}} | noimage" width="50px">
-                            </button>
+            <div class="col-md-5">
+
+                <mat-card>
+                    <mat-card-subtitle>Selecciona un Especialista</mat-card-subtitle>
+                    <mat-card-content class="d-flex flex-column align-items-center">
+                        <div class="">
+                            <div *ngFor="let espe of especialistasDisponibles">
+                                <button class=" btn mb-1 btn-primary btn-lg"
+                                    style="width: 100%;" (click)="seleccionoEspecialista(espe.uid)">
+                                    {{espe.nombre}} {{espe.apellido}}
+                                    <img src="{{espe.photoURL}} | noimage" width="50px">
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </mat-card-content>
-            </mat-card>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-4" *ngIf="especialista_elegido != '' ">
+
+                <mat-card>
+                    <mat-card-subtitle>Selecciona una especialidad</mat-card-subtitle>
+                    <mat-card-content class="d-flex flex-column align-items-center">
+                        <div class="">
+                            <div *ngFor="let espe of especialistaSeleccionado">
+                                <button class="d-flex flex-column align-items-center btn m-1 btn-primary"
+                                    style="width: 100%;" (click)="seleccionarEspecialidad(espe.nombre)">
+                                    {{espe.nombre}}
+                                    <img src="{{espe.pathImg}} | noimage" width="50px">
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-3" *ngIf="user.tipoUsuario == 'Administrador' && especialidadElegida != ''">
+
+                <mat-card>
+                    <mat-card-subtitle>Selecciona un paciente</mat-card-subtitle>
+                    <mat-card-content>
+                        <div class="">
+                            <div *ngFor="let pac of listadoPacientes">
+                                <button class="d-flex flex-column align-items-center btn mb-1 btn-primary"
+                                    style="width: 100%;" (click)="seleccionarPaciente(pac)">
+                                    {{pac.nombre}}
+                                    <img src="{{pac.photoURL}} | noimage" width="50px">
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
         </div>
 
-        <div class="col-md-4">
+        <mat-card-actions *ngIf="especialidadElegida != ''">
+            <div class="row">
 
-            <mat-card>
-                <mat-card-subtitle>Selecciona un Especialista</mat-card-subtitle>
-                <mat-card-content>
-                    <div class="">
-                        <div *ngFor="let espe of especialistasDisponibles">
-                            <button class="d-flex flex-column align-items-center btn mb-1 btn-primary" style="width: 100%;">
-                                {{espe.nombre}}
-                                <img src="{{espe.photoURL}} | noimage" width="50px">
-                            </button>
-                        </div>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        </div>
+                <div class="col">
 
-        <div class="col-md-4">
+                    <mat-card>
+                        <mat-card-subtitle>Selecciona un turno</mat-card-subtitle>
+                        <mat-card-content class="d-flex">
+                            <div *ngFor="let x of horarios_final">
+                                <div *ngFor="let hora of x[0].horarios" >
+                                    <button *ngIf="hora.disponible" class=" btn mb-1 btn-success" (click)="generarTurno(x[0].dia, hora.hora)">
+                                        {{x[0].dia}} {{hora.hora}}
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
 
-            <mat-card>
-                <mat-card-subtitle>Selecciona un Especialista</mat-card-subtitle>
-                <mat-card-content>
-                    <div class="">
-                        <div *ngFor="let espe of especialistasDisponibles">
-                            <button class="d-flex flex-column align-items-center btn mb-1 btn-primary" style="width: 100%;">
-                                {{espe.nombre}}
-                                <img src="{{espe.photoURL}} | noimage" width="50px">
-                            </button>
-                        </div>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </div>
+            </div>
+        </mat-card-actions>
 
-
+    </mat-card>
 </div>

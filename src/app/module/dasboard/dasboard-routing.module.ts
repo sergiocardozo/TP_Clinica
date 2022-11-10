@@ -5,6 +5,7 @@ import { DasboardComponent } from './dasboard.component';
 import { MiperfilComponent } from './miperfil/miperfil.component';
 import { PaneladminComponent } from './paneladmin/paneladmin.component';
 import { SolicitarTurnoComponent } from './solicitar-turno/solicitar-turno.component';
+import { TurnosComponent } from './turnos/turnos.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
     children: [
       { path: 'paneladmin', component: PaneladminComponent, canActivate: [AdminGuard] },
       { path: 'miperfil', component: MiperfilComponent },
-      { path: 'solicitarturno', component: SolicitarTurnoComponent}
+      { path: 'solicitarturno', component: SolicitarTurnoComponent},
+      { path: 'turnos', component: TurnosComponent},
     ]
   },
 

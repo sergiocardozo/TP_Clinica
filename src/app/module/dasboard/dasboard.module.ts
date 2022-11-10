@@ -11,6 +11,7 @@ import { PaneladminComponent } from './paneladmin/paneladmin.component';
 import { RegisterModule } from '../auth/register/register.module';
 import { MiperfilModule } from './miperfil/miperfil.module';
 import { SolicitarTurnoModule } from './solicitar-turno/solicitar-turno.module';
+import { TurnosModule } from './turnos/turnos.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SolicitarTurnoModule } from './solicitar-turno/solicitar-turno.module';
     MatIconModule,
     RegisterModule,
     MiperfilModule,
-    SolicitarTurnoModule
+    SolicitarTurnoModule,
+    TurnosModule
   ]
 })
 export class DasboardModule { }

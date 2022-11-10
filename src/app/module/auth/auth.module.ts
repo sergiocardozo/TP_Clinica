@@ -12,10 +12,12 @@ import { AlertErrorModule } from '../components/alert-error/alert-error.module';
 import { CargaespecialidadModule } from './cargaespecialidad/cargaespecialidad.module';
 
 
+
 @NgModule({
   declarations: [
     AuthComponent,
     TipoUsuarioComponent,
+  
   ],
   imports: [
     CommonModule,
