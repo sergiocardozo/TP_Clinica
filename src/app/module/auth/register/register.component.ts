@@ -91,12 +91,18 @@ export class RegisterComponent implements OnInit {
       if (form.password === form.confirmarPass) {
 
         try {
-          if (this.captcha) {
-
+          if (!this.captcha) {
+            this.spinnerSrv.hide()
+            this.enviarMensajeError('completar captcha');
+          } else {
             await this.auth.register(datos.email, form.password).then((resp) => {
               console.log(resp);
               this.userSrv.setItemId(datos, resp.user.uid).then(() => {
-                this.display = true;
+                setTimeout(() => {
+                  this.display = true;
+
+                }, 7000);
+                this.display = false;
                 this.spinnerSrv.hide();
                 this.formulario.reset();
               })
@@ -143,7 +149,10 @@ export class RegisterComponent implements OnInit {
       if (form.password === form.confirmarPass) {
 
         try {
-          if (this.captcha) {
+          if (!this.captcha) {
+            this.spinnerSrv.hide()
+            this.enviarMensajeError('completar captcha');
+          } else {
 
             await this.auth.register(datos.email, form.password).then((resp) => {
               this.userSrv.setItemId(datos, resp.user.uid).then(() => {
@@ -168,9 +177,6 @@ export class RegisterComponent implements OnInit {
                   break;
               }
             })
-          } else {
-            this.spinnerSrv.hide()
-            this.enviarMensajeError('completar captcha');
           }
         } catch (error) {
           console.log(error);
@@ -195,31 +201,35 @@ export class RegisterComponent implements OnInit {
       if (datos.password === form.confirmarPass) {
 
         try {
+          if (!this.captcha) {
+            this.spinnerSrv.hide()
+            this.enviarMensajeError('completar captcha');
+          } else {
+            await this.auth.register(datos.email, datos.password).then((resp) => {
+              console.log(resp);
+              this.userSrv.setItemId(datos, resp.user.uid).then(() => {
+                this.display = true;
+                this.spinnerSrv.hide();
+                this.formulario.reset();
+              })
 
-          await this.auth.register(datos.email, datos.password).then((resp) => {
-            console.log(resp);
-            this.userSrv.setItemId(datos, resp.user.uid).then(() => {
-              this.display = true;
-              this.spinnerSrv.hide();
-              this.formulario.reset();
+            }).catch(error => {
+              switch (error.code) {
+                case 'auth/email-already-exists':
+                  this.enviarMensajeError('El usuario ya existe')
+                  break;
+                case 'auth/invalid-email':
+                  this.enviarMensajeError('El email ingresado no es correcto');
+                  break;
+                case 'auth/user-not-found':
+                  this.enviarMensajeError('No existe registro con ese usuario');
+                  break;
+                default:
+                  this.enviarMensajeError(error.message);
+                  break;
+              }
             })
-
-          }).catch(error => {
-            switch (error.code) {
-              case 'auth/email-already-exists':
-                this.enviarMensajeError('El usuario ya existe')
-                break;
-              case 'auth/invalid-email':
-                this.enviarMensajeError('El email ingresado no es correcto');
-                break;
-              case 'auth/user-not-found':
-                this.enviarMensajeError('No existe registro con ese usuario');
-                break;
-              default:
-                this.enviarMensajeError(error.message);
-                break;
-            }
-          })
+          }
         } catch (error) {
           console.log(error);
         }

@@ -40,19 +40,17 @@ export class TurnosComponent implements OnInit {
     this.turnosSrv.getTurnos().subscribe((res) => {
       this.turnos = [];
       res.forEach(turno => {
-        this.turnos = [];
-        this.especialista.forEach(esp => {
-          
-          if( turno.uidEspecialista == esp.uid){
-            this.pacientes.forEach(paciente => {
-              if (turno.uidPaciente == paciente.uid) {
-                this.turnos.push({ ...turno, 'paciente': (paciente.apellido + ', ' + paciente.nombre), 'especialista': (esp.apellido + ', ' + esp.nombre) })
-              }
-            });
-            console.log(this.turnos);
-          }
+        this.pacientes.forEach( element => {
+          this.especialista.forEach(esp => {
+
+            if(turno.uidPaciente == element.uid && turno.uidEspecialista == esp.uid){
+              let mostrar = { ...turno,
+                 'paciente': (element.apellido + ', ' + element.nombre),
+                'especialista': (esp.apellido + ', ' + esp.nombre)  }
+              this.turnos.push(mostrar);
+            }
+          })
         })
-        
         
       });
     });

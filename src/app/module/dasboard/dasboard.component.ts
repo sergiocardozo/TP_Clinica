@@ -29,7 +29,7 @@ export class DasboardComponent {
     private router: Router,
     private userSrv: UserService
   ) {
-    
+
     let ls = localStorage.getItem('usuario-clinica');
     if (ls != null) {
       let user = JSON.parse(ls);
@@ -37,7 +37,7 @@ export class DasboardComponent {
       this.image = user.photoURL;
       if (user.tipoUsuario === 'Administrador') {
         this.isAdmin = true;
-      } else if(user.tipoUsuario === 'Especialista'){
+      } else if (user.tipoUsuario === 'Especialista') {
         this.isEspecialista = true;
       } else {
         this.isPaciente = true;
@@ -47,10 +47,10 @@ export class DasboardComponent {
 
 
 
-async logout() {
-  await this.authSrv.logout().then(resp => {
-    this.router.navigate(['home']);
-  })
+  async logout() {
+    await this.authSrv.logout().then(resp => {
+      this.router.navigate(['home']);
+    })
 
-}
+  }
 }

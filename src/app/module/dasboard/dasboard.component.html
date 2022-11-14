@@ -1,36 +1,43 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false">
-      <mat-toolbar>Menu</mat-toolbar>
-      <mat-nav-list class="d-flex flex-column align-items-center">
-        <button type="button" class="btn btn-outline-light mb-2"   routerLink="/dashboard/miperfil">Mi Perfil</button>
-        <button type="button" class="btn btn-outline-light mb-2" *ngIf="isAdmin" routerLink="/dashboard/paneladmin">Usuarios</button>
-        <button type="button" class="btn btn-outline-light mb-2"  routerLink="/dashboard/paneladmin">Mis Turnos</button>
-        <button type="button" class="btn btn-outline-light mb-2" *ngIf="isAdmin || isPaciente" routerLink="/dashboard/solicitarturno">Solicitar Turno</button>
-        <button type="button" class="btn btn-outline-light mb-2" *ngIf="isAdmin" routerLink="/dashboard/turnos">Turnos</button>
-        
-        <button type="button" class="btn btn-outline-danger" (click)="logout()">Salir</button>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <mat-toolbar class="justify-content-between" color="primary">
-        <button
-        type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-          *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-        
-        <span>Clinica-<strong>UTN</strong></span>
-        <span > <img src="{{image}}" alt="" class="imgRedonda me-2">{{email}}</span>
-      </mat-toolbar>
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list >
 
-      <router-outlet></router-outlet>
+      <div class="d-flex flex-column align-items-center">
+
+        <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" routerLink="/dashboard/miperfil">Mi Perfil</button>
+        <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isAdmin" routerLink="/dashboard/paneladmin">Usuarios</button>
+        <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isAdmin || isPaciente" routerLink="/dashboard/solicitarturno">Solicitar Turno</button>
+        <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isAdmin" routerLink="/dashboard/turnos">Turnos</button>
+        <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isPaciente " routerLink="/dashboard/turnopaciente">Mis Turnos</button>
+        <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isEspecialista " routerLink="/dashboard/turnoespecialista">Mis Turnos</button>
+        
+      </div>
+      <div>
+        <button type="button" class="btn btn-outline-danger"  (click)="logout()">Salir</button>
+      </div>
       
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="justify-content-between" color="primary">
+      <button
+      type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      
+      <span>Clinica-<strong>UTN</strong></span>
+      <span > <img src="{{image}}" alt="" class="imgRedonda me-2">{{email}}</span>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

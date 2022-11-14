@@ -5,23 +5,23 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltroEspecialistaPipe implements PipeTransform {
 
-  transform(value: any, args: any): any {
-    const turnosEspecialista :Array<any>= [];
+  transform(value: any, args: any): any[] {
+    const turnosPaciente :Array<any>= [];
 
     for (const turno of value) {
-     
-      console.log(turno);
-      if (turno?.especialidad!.toLowerCase().indexOf(args.toLowerCase()) > -1) {
-        turnosEspecialista.push(turno);
+      
+      if (turno.especialidad.toLowerCase().indexOf(args.toLowerCase()) > -1) {
+        turnosPaciente.push(turno);
+
       }
       else {
         if (turno.especialista.toLowerCase().indexOf(args.toLowerCase()) > -1) {
-          turnosEspecialista.push(turno);
+          turnosPaciente.push(turno);
         } 
       }
  
   }
-  return turnosEspecialista
+  return turnosPaciente
   }
 
 }

@@ -22,6 +22,20 @@ export class TurnosService {
     return this.itemCollection.valueChanges({ idField: 'doc_id' });
   }
 
+  getTurnosPacientes(uid: string) {
+    this.itemCollection = this.afs.collection('turnos', ref =>
+      ref.where('uidPaciente', '==', uid)
+    );
+    return this.itemCollection.valueChanges({ idField: "doc_id" });
+  }
+
+  getTurnosEspecialista(uidEspecialista: string) {
+    this.itemEspecialistaCollection = this.afs.collection('turnos', ref =>
+      ref.where('uidEspecialista', '==', uidEspecialista)
+    );
+    return this.itemEspecialistaCollection.valueChanges({ idField: "doc_id" });
+  }
+
   getTurnosEspec_Especialidad(uidEsp: string, especialidad: string) {
     this.itemEspecialistaCollection = this.afs.collection('turnos', ref => ref.where('especialista', '==', uidEsp).where('especialidad', '==', especialidad));
     return this.itemEspecialistaCollection.valueChanges({ idField: 'doc_id' });
@@ -36,7 +50,7 @@ export class TurnosService {
       estado: item.estado,
       hora: item.hora,
       uidPaciente: item.uidPaciente,
-      reseña: item.reseña,
+      resenia: item.resenia,
       comentario_cancela: item.comentario_cancela,
       comentario_anula: item.comentario_anula,
       calificacion: item.calificacion

@@ -28,6 +28,8 @@ export class SolicitarTurnoComponent implements OnInit {
   horarios_final: Array<any> = [];
 
   constructor(private userSrv: UserService, private horariosSrv: HorariosService, private turnoSrv: TurnosService, private authSrv: AuthService) {
+    
+    console.log(this.horarios_final);
     this.userSrv.getEspecialidad().subscribe((res) => {
       this.especialidadesLista = res;
       this.especialidadesLista.forEach(element => {
@@ -104,6 +106,7 @@ export class SolicitarTurnoComponent implements OnInit {
     this.horariosSrv.getHorarEsp(this.especialista_elegido, this.especialidadElegida).subscribe((res: any) => {
       this.horarios_final = [];
       if (res[0] == null) {
+        console.log(this.horarios_final);
         Swal.fire('este especialista no tiene horarios cargados')
       } else {
         this.proximosQuinceDias.forEach(dia => {
@@ -125,7 +128,7 @@ export class SolicitarTurnoComponent implements OnInit {
   seleccionoEspecialista(uid: string) {
     this.especialistaSeleccionado = [];
     this.especialista_elegido = uid;
-
+    this.horarios_final = [];
     this.especialistasDisponibles.forEach(element => {
       if (element.uid === this.especialista_elegido) {
         element.especialidad.forEach(especialidad => {
@@ -158,19 +161,19 @@ export class SolicitarTurnoComponent implements OnInit {
             especialidad: this.especialidadElegida,
             dia: dia,
             hora: hora,
-            
+
             estado: 'Pendiente',
             comentario_anula: '',
             comentario_cancela: '',
-            reseña: '',
+            resenia: '',
             calificacion: 0
           }
           this.turnoSrv.addTurno(dato).then(() => {
             Swal.fire('Turno Generado', '', 'info')
             this.horarios_final.forEach(element => {
               element[0].horarios.forEach(horar => {
-                if(horar.hora == hora && element[0].dia == dia){
-                    horar.disponible = false;                  
+                if (horar.hora == hora && element[0].dia == dia) {
+                  horar.disponible = false;
                 }
               })
             })
@@ -185,15 +188,15 @@ export class SolicitarTurnoComponent implements OnInit {
             estado: 'Pendiente',
             comentario_anula: '',
             comentario_cancela: '',
-            reseña: '',
+            resenia: '',
             calificacion: 0
           }
           this.turnoSrv.addTurno(dato).then(() => {
             Swal.fire('Turno Generado', '', 'info')
             this.horarios_final.forEach(element => {
               element[0].horarios.forEach(horar => {
-                if(horar.hora == hora && element[0].dia == dia){
-                    horar.disponible = false;                  
+                if (horar.hora == hora && element[0].dia == dia) {
+                  horar.disponible = false;
                 }
               })
             })
