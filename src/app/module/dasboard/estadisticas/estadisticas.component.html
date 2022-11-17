@@ -1,0 +1,28 @@
+<div class="container m-2">
+    <mat-card>
+        <mat-card-title class="text-center">Estadisticas</mat-card-title>
+        <mat-card-content>
+            <button class="btn btn-primary btn-block m-1" (click)="descargar(1)">Descargar logs de ingresos
+                al sistema <i class="fa fa-download"></i></button>
+            <button class="btn btn-primary btn-block m-1" (click)="descargar(2)">Ver turnos por
+                especialidad <i class="fa fa-download"></i></button>
+            <button class="btn btn-primary btn-block m-1" (click)="descargar(3)">Ver turnos por dia<i
+                    class="fa fa-download"></i></button>
+            <button class="btn btn-primary btn-block m-1" (click)="descargar(4)">Ver turnos solicitados por medico<i
+                    class="fa fa-download"></i></button>
+            <button class="btn btn-primary btn-block m-1" (click)="descargar(5)">Ver turnos finalizados por medico<i
+                    class="fa fa-download"></i></button>
+
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="m-2">
+        <mat-card-content>
+            <app-turnos-especialidad *ngIf="mostrarTurnosEspecialidad"></app-turnos-especialidad>
+            <app-turnosdia *ngIf="mostrarTurnosPorDia"></app-turnosdia>
+            <app-turno-solicitado *ngIf="mostrarTurnosSolicitados"></app-turno-solicitado>
+            <app-turno-finalizado *ngIf="mostrarTurnosFinalizados"></app-turno-finalizado>
+        </mat-card-content>
+    </mat-card>
+
+</div>

@@ -1,25 +1,33 @@
-<div class="d-flex">
+<div class="container  m-2">
 
-    <div *ngFor="let atencion of listaHistoriaClinica">
-        <mat-card *ngIf="atencion.mostrar">
-            <mat-card-subtitle class="text-center">{{atencion.paciente.nombre}} {{atencion.paciente.apellido}}
-            </mat-card-subtitle>
-            <mat-card-content>
+    <div class="d-flex" >
 
-                <button type="button" class="btn " (click)="mostrarDatos()">
-                    <img src="{{atencion.paciente.photoURL}}" alt="" class="imgRedonda">
-                </button>
-            </mat-card-content>
+        <mat-card class="m-2" *ngFor="let atencion of listaHistoriaClinica" >
+            <div *ngIf="atencion.mostrar">
+                <div>
 
-            <mat-card *ngIf="displayTabla">
-                <mat-card-subtitle>Detalle Turnos</mat-card-subtitle>
-                <mat-card-content *ngFor="let atencion of listaHistoriaClinica">
-                    <p>{{ atencion.turno | atencion }}</p>
-                    <button class="btn btn-success" (click)="verResenia(atencion.turno)">Ver reseña</button>
+                    <mat-card-subtitle class="text-center">{{atencion.paciente.nombre}} {{atencion.paciente.apellido}}
+                    </mat-card-subtitle>
+                </div>
+                <mat-card-content>
+                    <button type="button" class="btn " (click)="mostrarDatos(atencion.turno.uidPaciente)">
+                        <img src="{{atencion.paciente.photoURL}}" alt="" class="imgRedonda">
+                    </button>
+
                 </mat-card-content>
-                
-            </mat-card>
-           
+            </div>
         </mat-card>
     </div>
+
+    <mat-card *ngIf="displayTabla">
+        <mat-card-subtitle>Detalle Turnos</mat-card-subtitle>
+        <mat-card-content *ngFor="let turno of listaTurnos">
+            <p>{{ turno | atencion }}</p>
+            <button class="btn btn-success" (click)="verResenia(turno)">Ver reseña</button>
+        </mat-card-content>
+
+    </mat-card>
+
+    <button *ngIf="displayTabla" class="btn btn-danger mt-2" (click)="close()">Cerrar</button>
+
 </div>

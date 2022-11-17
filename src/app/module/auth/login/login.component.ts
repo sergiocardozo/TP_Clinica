@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { LogsService } from 'src/app/service/logs.service';
 import { SpinnerService } from 'src/app/service/spinner.service';
 import { UserService } from 'src/app/service/user.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +35,8 @@ export class LoginComponent implements OnInit {
   constructor(private authSrv: AuthService,
     private router: Router,
     private userSrv: UserService,
-    private spinnerSrv: SpinnerService) {
+    private spinnerSrv: SpinnerService,
+    private logsSrv: LogsService) {
 
 
     this.formulario = new FormGroup({
@@ -55,6 +58,11 @@ export class LoginComponent implements OnInit {
       email: form.email,
       password: form.password
     }
+    let log = {
+      id: '',
+      fecha: moment().format("DD-MM-YYYY HH:mm"),
+      email: form.email
+    }
     try {
       await this.authSrv.login(datos.email, datos.password).then(async (resp) => {
         const user = (await this.userSrv.getUserByUid('' + resp?.user?.uid).toPromise()).data();
@@ -63,6 +71,8 @@ export class LoginComponent implements OnInit {
           case 'Paciente':
             if (resp?.user?.emailVerified) {
               localStorage.setItem('usuario-clinica', JSON.stringify({ ...user }));
+              log.id = resp.user.uid;
+              this.logsSrv.addItem(log);
               this.spinnerSrv.hide();
               this.router.navigate(['/dashboard']);
             } else {
@@ -75,6 +85,8 @@ export class LoginComponent implements OnInit {
               if (user.estadoAcceso !== 'Deshabilitado') {
 
                 localStorage.setItem('usuario-clinica', JSON.stringify({ ...user }));
+                log.id = resp.user.uid;
+                this.logsSrv.addItem(log);
                 this.spinnerSrv.hide();
                 this.router.navigate(['/dashboard']);
 
@@ -91,6 +103,8 @@ export class LoginComponent implements OnInit {
           case 'Administrador':
             if (resp?.user?.emailVerified) {
               localStorage.setItem('usuario-clinica', JSON.stringify({ ...user }));
+              log.id = resp.user.uid;
+              this.logsSrv.addItem(log);
               this.spinnerSrv.hide();
               this.router.navigate(['/dashboard']);
 

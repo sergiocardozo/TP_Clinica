@@ -5,6 +5,9 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
 import { FiltroPacientePipe } from 'src/app/pipes/filtro-paciente.pipe';
 import { EncuestaModule } from '../encuesta/encuesta.module';
+import { DirectivasModule } from 'src/app/directivas/directivas.module';
+import { MatCard, MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -14,7 +17,10 @@ import { EncuestaModule } from '../encuesta/encuesta.module';
     CommonModule,
     PipesModule,
     FormsModule,
-    EncuestaModule
+    EncuestaModule,
+    DirectivasModule,
+    MatCardModule,
+    MatDividerModule
   ],
   exports: [MisTurnosPacienteComponent]
 })

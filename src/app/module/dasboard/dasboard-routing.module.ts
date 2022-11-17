@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from 'src/app/guards/admin.guard';
 import { DasboardComponent } from './dasboard.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { MiperfilComponent } from './miperfil/miperfil.component';
 import { MisTurnosEspecialistaComponent } from './mis-turnos-especialista/mis-turnos-especialista.component';
 import { MisTurnosPacienteComponent } from './mis-turnos-paciente/mis-turnos-paciente.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
       { path: 'solicitarturno', component: SolicitarTurnoComponent},
       { path: 'turnopaciente', component: MisTurnosPacienteComponent },
       { path: 'turnoespecialista', component: MisTurnosEspecialistaComponent},
-      { path: 'pacientes', component: PacientesComponent}
+      { path: 'pacientes', component: PacientesComponent},
+      { path: 'estadisticas', component: EstadisticasComponent}
     ],
     
   },

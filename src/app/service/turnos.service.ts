@@ -41,6 +41,10 @@ export class TurnosService {
     return this.itemEspecialistaCollection.valueChanges({ idField: 'doc_id' });
   }
 
+  getTurnosDia(){ 
+    this.itemCollection = this.afs.collection('turnos', ref=>ref.orderBy('dia','asc'));
+    return this.itemCollection.valueChanges({idField: "doc_id"});
+  }
   updateTurno(id: string, item: any) {
 
     return this.itemCollection.doc(id).update({

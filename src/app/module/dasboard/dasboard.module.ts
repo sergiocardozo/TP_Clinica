@@ -17,6 +17,10 @@ import { EncuestaModule } from './encuesta/encuesta.module';
 import { MisTurnosEspecialistaModule } from './mis-turnos-especialista/mis-turnos-especialista.module';
 import { PacientesModule } from './pacientes/pacientes.module';
 import { PaneladminModule } from './paneladmin/paneladmin.module';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EstadisticasModule } from './estadisticas/estadisticas.module';
+import { NgChartsModule } from 'ng2-charts';
+import { DirectivasModule } from 'src/app/directivas/directivas.module';
 
 
 @NgModule({
@@ -38,6 +42,9 @@ import { PaneladminModule } from './paneladmin/paneladmin.module';
     MisTurnosEspecialistaModule,
     EncuestaModule,
     PacientesModule,
+    EstadisticasModule,
+    NgChartsModule,
+    DirectivasModule
   ]
 })
 export class DasboardModule { }

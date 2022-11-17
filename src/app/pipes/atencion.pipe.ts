@@ -6,7 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AtencionPipe implements PipeTransform {
 
   transform(value: any, ...args: unknown[]): unknown {
-    return '📅 '+value.dia+' ⏰ '+value.hora +' 👨‍⚕️ '+value.especialidad;;
+
+    return '📅 ' + value.dia + ' ⏰ ' + value.hora + ' 👨‍⚕️ ' + value.especialidad;;
+
   }
 
 }

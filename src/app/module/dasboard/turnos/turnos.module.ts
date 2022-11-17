@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TurnosComponent } from './turnos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { DirectivasModule } from 'src/app/directivas/directivas.module';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -12,7 +15,10 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     CommonModule,
     FormsModule,
     PipesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DirectivasModule,
+    MatCardModule,
+    MatDividerModule
   ], 
   exports: [TurnosComponent]
 })

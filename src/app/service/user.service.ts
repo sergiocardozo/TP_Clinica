@@ -27,6 +27,11 @@ export class UserService {
   protected getItemById(id: string) {
     return this.itemCollection.doc(id).get();
   }
+
+  getAll(){
+    this.itemCollection = this.afs.collection('usuarios');
+    return this.itemCollection.valueChanges({idField: 'doc_id'});
+  }
   /* ESPECIALIDADES */
   addEspecialidad(item: any) {
     this.especialidadesCollection = this.afs.collection('especialidades');
