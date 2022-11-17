@@ -1,0 +1,50 @@
+
+<div *ngIf="usuario.tipoUsuario=='Paciente'">
+
+    <mat-card>
+        <mat-card-title class="text-center">Historia Clinica</mat-card-title>
+        <mat-card-content>
+            <div >
+
+                <select class="form-select" [(ngModel)]="seleccion" (change)="capturar()">
+                    <option value="0">Seleccione un especialista</option>
+                    <option *ngFor="let espe of especialistas" >{{espe.nombre}} {{espe.apellido}}</option>
+                </select>
+            </div>
+            <div class="text-center" *ngFor="let atencion of listaHistoriaClinica">
+                <label class="m-2"> {{atencion.dia}} {{atencion.hora}} {{atencion.especialidad}} </label>
+                <button class="btn btn-info m-2" (click)="verHistoria(atencion)">Ver Historia clinica</button>
+                <button class="btn btn-success m-2" (click)="descargar(atencion)"> Descargar </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="mostrarTabla">
+        <div class="card">
+            <div id="descarga" class="d-flex flex-column align-items-center">
+                <img id="icono mb-5" src="./../../../../assets/descarga.png" width="400px">
+                
+                
+                <div class="card text-dark" style="width: 23rem;">
+                    <div class="card-header">
+                        <h1> <strong>Historia clinica: </strong> {{usuario.apellido}},{{usuario.nombre}} </h1>
+                        <h2><strong> Fecha de emision:</strong> {{ahora}} </h2>
+                       <h3><strong> Historia clinica: </strong> {{atencion_descarga.dia }} {{atencion_descarga.hora}}</h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Especialidad: {{atencion_descarga.especialidad}} </li>
+                        <li class="list-group-item">Altura: {{atencion_descarga.altura}} </li>
+                        <li class="list-group-item">peso: {{atencion_descarga.peso}}</li>
+                        <li class="list-group-item">presion: {{atencion_descarga.presion}}</li>
+                        <li class="list-group-item">temperatura: {{atencion_descarga.temperatura}}</li>
+                        <div *ngFor="let opc of atencion_descarga.opcionales">
+                            <li class="list-group-item" *ngIf="opc.value!=''">{{opc.key}}: {{opc.value}} </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <button class="btn btn-success" (click)="downloadPDF()"> Descargar </button>
+
+        </div>
+    </mat-card>
+</div>

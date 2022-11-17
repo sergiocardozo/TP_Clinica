@@ -53,4 +53,9 @@ export class UserService {
   getPacientes() {
     return this.afs.collection('usuarios', ref => ref.where('tipoUsuario', '==', 'Paciente')).valueChanges({ idField: "doc_id" })
   }
+  getPacienteUid(uid: string ) {
+    return this.afs.collection('usuarios', ref => ref.where('tipoUsuario', '==', 'Paciente').where('uid', '==', uid))
+    .valueChanges({ idField: "doc_id" })
+
+  }
 }

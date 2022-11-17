@@ -12,16 +12,16 @@ import { RegisterModule } from '../auth/register/register.module';
 import { MiperfilModule } from './miperfil/miperfil.module';
 import { SolicitarTurnoModule } from './solicitar-turno/solicitar-turno.module';
 import { TurnosModule } from './turnos/turnos.module';
-import { MisTurnosEspecialistaComponent } from './mis-turnos-especialista/mis-turnos-especialista.component';
 import { MisTurnosPacienteModule } from './mis-turnos-paciente/mis-turnos-paciente.module';
 import { EncuestaModule } from './encuesta/encuesta.module';
 import { MisTurnosEspecialistaModule } from './mis-turnos-especialista/mis-turnos-especialista.module';
+import { PacientesModule } from './pacientes/pacientes.module';
+import { PaneladminModule } from './paneladmin/paneladmin.module';
 
 
 @NgModule({
   declarations: [
     DasboardComponent,
-    PaneladminComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +36,8 @@ import { MisTurnosEspecialistaModule } from './mis-turnos-especialista/mis-turno
     SolicitarTurnoModule,
     MisTurnosPacienteModule,
     MisTurnosEspecialistaModule,
-    EncuestaModule
+    EncuestaModule,
+    PacientesModule,
   ]
 })
 export class DasboardModule { }

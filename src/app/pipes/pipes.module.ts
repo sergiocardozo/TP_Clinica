@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NoimagePipe } from './noimage.pipe';
 import { FiltroPacientePipe } from './filtro-paciente.pipe';
 import { FiltroEspecialistaPipe } from './filtro-especialista.pipe';
-import { NombreapellidoPipe } from './nombreapellido.pipe';
+import { AtencionPipe } from './atencion.pipe';
 
 
 
 @NgModule({
-  declarations: [NoimagePipe, FiltroPacientePipe, FiltroEspecialistaPipe, NombreapellidoPipe],
+  declarations: [ FiltroPacientePipe, FiltroEspecialistaPipe, AtencionPipe,],
   imports: [
     CommonModule
   ],
-  exports: [NoimagePipe, FiltroPacientePipe, FiltroEspecialistaPipe, NombreapellidoPipe]
+  exports: [ FiltroPacientePipe, FiltroEspecialistaPipe, AtencionPipe]
 })
 export class PipesModule { }

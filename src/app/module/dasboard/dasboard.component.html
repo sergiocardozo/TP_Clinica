@@ -14,10 +14,11 @@
         <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isAdmin" routerLink="/dashboard/turnos">Turnos</button>
         <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isPaciente " routerLink="/dashboard/turnopaciente">Mis Turnos</button>
         <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isEspecialista " routerLink="/dashboard/turnoespecialista">Mis Turnos</button>
+        <button type="button" class="btn btn-outline-light m-2" style="width: 90%;" *ngIf="isEspecialista " routerLink="/dashboard/pacientes">Pacientes</button>
+        <button type="button" class="btn btn-outline-danger m-2" style="width:90%;" (click)="logout()">Salir</button>
         
       </div>
       <div>
-        <button type="button" class="btn btn-outline-danger"  (click)="logout()">Salir</button>
       </div>
       
     </mat-nav-list>

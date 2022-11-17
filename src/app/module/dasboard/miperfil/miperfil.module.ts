@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { HistoriaClinicaModule } from '../../components/historia-clinica/historia-clinica.module';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     MatDividerModule,
     MatProgressBarModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    HistoriaClinicaModule
   ],
   exports: [MiperfilComponent]
 })

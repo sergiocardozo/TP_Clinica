@@ -1,0 +1,25 @@
+<div class="d-flex">
+
+    <div *ngFor="let atencion of listaHistoriaClinica">
+        <mat-card *ngIf="atencion.mostrar">
+            <mat-card-subtitle class="text-center">{{atencion.paciente.nombre}} {{atencion.paciente.apellido}}
+            </mat-card-subtitle>
+            <mat-card-content>
+
+                <button type="button" class="btn " (click)="mostrarDatos()">
+                    <img src="{{atencion.paciente.photoURL}}" alt="" class="imgRedonda">
+                </button>
+            </mat-card-content>
+
+            <mat-card *ngIf="displayTabla">
+                <mat-card-subtitle>Detalle Turnos</mat-card-subtitle>
+                <mat-card-content *ngFor="let atencion of listaHistoriaClinica">
+                    <p>{{ atencion.turno | atencion }}</p>
+                    <button class="btn btn-success" (click)="verResenia(atencion.turno)">Ver reseña</button>
+                </mat-card-content>
+                
+            </mat-card>
+           
+        </mat-card>
+    </div>
+</div>

@@ -5,13 +5,14 @@ import { MisTurnosPacienteComponent } from '../mis-turnos-paciente/mis-turnos-pa
 import { FormsModule } from '@angular/forms';
 import { EncuestaModule } from '../encuesta/encuesta.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { CargaHistoriaModule } from '../../components/carga-historia/carga-historia.module';
 
 
 
 @NgModule({
   declarations: [MisTurnosEspecialistaComponent],
   imports: [
-    CommonModule, FormsModule, EncuestaModule, PipesModule
+    CommonModule, FormsModule, EncuestaModule, PipesModule, CargaHistoriaModule
   ],
   exports: [MisTurnosEspecialistaComponent]
 })

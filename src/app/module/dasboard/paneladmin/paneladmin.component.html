@@ -48,9 +48,26 @@
         </div>
         <div class="m-2">
 
+            <button type="button" class="btn btn-danger" (click)="mostrarUsuarios()">Usuarios</button>
+        </div>
+        <div class="m-2">
+
             <button type="button" class="btn btn-danger" (click)="closed()">Cerrar</button>
         </div>
         
+        
         <app-register *ngIf="displayRegistro" [tipo]="tipoUsuario" [closed]="close"></app-register>
+    </div>
+    <div *ngIf="displayUsuarios" class="d-flex justify-content-center">
+
+        <mat-card  *ngFor="let espe of especialistas" class="m-2">
+            <mat-card-subtitle>{{espe.nombre}} {{espe.apellido}}</mat-card-subtitle>
+            <mat-card-content>
+                <img src="{{espe.photoURL}}" alt="" style="width: 50px;">
+            </mat-card-content>
+            <mat-card-actions>
+                <button class="btn btn-outline-light" (click)="descargarInfo(espe.uid)">Descargar</button>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </div>
