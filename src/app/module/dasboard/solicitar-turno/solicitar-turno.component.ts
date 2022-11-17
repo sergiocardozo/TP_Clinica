@@ -1,35 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { Paciente } from 'src/app/models/paciente.interface';
 import { AuthService } from 'src/app/service/auth.service';
 import { HorariosService } from 'src/app/service/horarios.service';
 import { TurnosService } from 'src/app/service/turnos.service';
 import { UserService } from 'src/app/service/user.service';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
-import { elementAt } from 'rxjs';
+import { trigger, transition, style, animate, keyframes } from '@angular/animations';
+
 moment.locale('es');
 @Component({
   selector: 'app-solicitar-turno',
   templateUrl: './solicitar-turno.component.html',
-  styleUrls: ['./solicitar-turno.component.css']
+  styleUrls: ['./solicitar-turno.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-500px)' }),
+        animate('900ms ease-out', keyframes([
+          style({ opacity: 1, transform: 'translateY(220px)' }),
+          style({ transform: 'translateY(-10px)' }),
+          style({ transform: 'translateY(0px)' }),
+        ])),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'translateY(0px)' }),
+        animate('900ms ease-in', keyframes([
+          style({ transform: 'translateY(-30px)', offset: 0.6 }),
+          style({ opacity: 0, transform: 'translateY(500px)', offset: 1 }),
+        ])),
+      ]),
+    ])
+  ]
 })
 export class SolicitarTurnoComponent implements OnInit {
 
+  show = true;
   user: any;
   paciente_elegido?: any;
   especialidadesLista: Array<any> = [];
   especialidadElegida: string = '';
+  especialistaSeleccionado: Array<any> = [];
+
   especialistasDisponibles: Array<any> = [];
-  listadoUsuariosEspecialistasCalificados: Array<any> = [];
   listadoPacientes: Array<any> = [];
   especialista_elegido: string = '';
   proximosQuinceDias: Array<any> = [];
-  horarios_pre: Array<any> = [];
   horarios_final: Array<any> = [];
 
   constructor(private userSrv: UserService, private horariosSrv: HorariosService, private turnoSrv: TurnosService, private authSrv: AuthService) {
-    
-    console.log(this.horarios_final);
+
     this.userSrv.getEspecialidad().subscribe((res) => {
       this.especialidadesLista = res;
       this.especialidadesLista.forEach(element => {
@@ -41,7 +60,6 @@ export class SolicitarTurnoComponent implements OnInit {
 
     this.userSrv.getEspecialistas().subscribe((res) => {
       this.especialistasDisponibles = res
-
     });
 
     this.userSrv.getPacientes().subscribe((res: any) => {
@@ -77,7 +95,6 @@ export class SolicitarTurnoComponent implements OnInit {
     let cantidadTurnos = (final.diff(inicio, 'minute') / duracionTurno);
     let cantidadMinutos = cantidadTurnos * duracionTurno;
 
-
     for (let i = 0; i < cantidadMinutos; i += duracionTurno) {
       let nuevaHora = inicio.clone().add(i, 'minutes').format(formato);
       retorno[0].horarios.push({ hora: nuevaHora, disponible: true });
@@ -89,7 +106,6 @@ export class SolicitarTurnoComponent implements OnInit {
 
           if (turno.hora == horario.hora && turno.dia == retorno[0].dia && turno.estado != 'cancelado') {
             horario.disponible = false
-
           }
         });
       });
@@ -100,14 +116,13 @@ export class SolicitarTurnoComponent implements OnInit {
 
 
   seleccionarEspecialidad(especialidad: string) {
-
+    this.horarios_final = [];
+    
     this.especialidadElegida = especialidad;
     let duracionMinEspecialidad: number = 30;
     this.horariosSrv.getHorarEsp(this.especialista_elegido, this.especialidadElegida).subscribe((res: any) => {
-      this.horarios_final = [];
-      if (res[0] == null) {
-        console.log(this.horarios_final);
-        Swal.fire('este especialista no tiene horarios cargados')
+      if (res.length === 0) {
+        this.horarios_final = [];
       } else {
         this.proximosQuinceDias.forEach(dia => {
           res[0].horarios.forEach((element: any) => {
@@ -123,7 +138,6 @@ export class SolicitarTurnoComponent implements OnInit {
     });
   }
 
-  especialistaSeleccionado: Array<any> = [];
 
   seleccionoEspecialista(uid: string) {
     this.especialistaSeleccionado = [];

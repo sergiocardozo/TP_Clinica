@@ -1,5 +1,7 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
+import { SpinnerService } from 'src/app/service/spinner.service';
 import { TurnosService } from 'src/app/service/turnos.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
@@ -7,10 +9,22 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-mis-turnos-paciente',
   templateUrl: './mis-turnos-paciente.component.html',
-  styleUrls: ['./mis-turnos-paciente.component.css']
+  styleUrls: ['./mis-turnos-paciente.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(40px)' }),
+        animate('800ms', style({ opacity: 1, transform: 'translateX(0)' })),
+      ]),
+      transition(':leave', [
+        animate('800ms', style({ opacity: 0, transform: 'translateX(40px)' })),
+      ]),
+    ])
+  ]
 })
 export class MisTurnosPacienteComponent implements OnInit {
 
+  show = true;
   public paciente: any;
   public especialidadesLista: Array<any> = [];
   public especialistasDisponibles: Array<any> = [];
@@ -19,8 +33,8 @@ export class MisTurnosPacienteComponent implements OnInit {
   completarEncuesta_flag: boolean = false;
   turnoEncuesta: any;
   constructor(private userSrv: UserService,
-    private authSrv: AuthService, private turnosSrv: TurnosService) {
-
+    private authSrv: AuthService, private turnosSrv: TurnosService, private spinnerSrv: SpinnerService) {
+    
     this.userSrv.getEspecialidad().subscribe((res) => {
       this.especialidadesLista = res;
     });
@@ -33,6 +47,7 @@ export class MisTurnosPacienteComponent implements OnInit {
     this.paciente = this.authSrv.getUser();
 
     this.turnosSrv.getTurnosPacientes(this.paciente.uid).subscribe((res) => {
+
       this.turnosPaciente = [];
       res.forEach(turno => {
         this.especialistasDisponibles.forEach(especialista => {

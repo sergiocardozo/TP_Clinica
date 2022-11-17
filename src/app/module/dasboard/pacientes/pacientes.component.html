@@ -1,7 +1,7 @@
-<div class="container  m-2">
+<div class="container  m-2" >
 
+    <h1 class="text-center">Mis Pacientes</h1>
     <div class="d-flex" >
-
         <mat-card class="m-2" *ngFor="let atencion of listaHistoriaClinica" >
             <div *ngIf="atencion.mostrar">
                 <div>
@@ -19,7 +19,7 @@
         </mat-card>
     </div>
 
-    <mat-card *ngIf="displayTabla">
+    <mat-card *ngIf="displayTabla" style="width: 50%;">
         <mat-card-subtitle>Detalle Turnos</mat-card-subtitle>
         <mat-card-content *ngFor="let turno of listaTurnos">
             <p>{{ turno | atencion }}</p>

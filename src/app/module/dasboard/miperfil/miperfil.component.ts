@@ -1,12 +1,31 @@
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { HorariosService } from 'src/app/service/horarios.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-miperfil',
   templateUrl: './miperfil.component.html',
-  styleUrls: ['./miperfil.component.css']
+  styleUrls: ['./miperfil.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(-500px)' }),
+        animate('700ms ease-out', keyframes([
+          style({ opacity: 1, transform: 'translateX(220px)' }),
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(0px)' }),
+        ])),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'translateX(0px)' }),
+        animate('700ms ease-in', keyframes([
+          style({ transform: 'translateX(-30px)', offset: 0.6 }),
+          style({ opacity: 0, transform: 'translateX(500px)', offset: 1 }),
+        ])),
+      ]),
+    ])
+  ]
 })
 export class MiperfilComponent implements OnInit {
 

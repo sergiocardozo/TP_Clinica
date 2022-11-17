@@ -1,3 +1,4 @@
+import { trigger, transition, query, style, group, animate, sequence, state } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { HistoriaService } from 'src/app/service/historia.service';
 import { TurnosService } from 'src/app/service/turnos.service';
@@ -7,10 +8,12 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-pacientes',
   templateUrl: './pacientes.component.html',
-  styleUrls: ['./pacientes.component.css']
+  styleUrls: ['./pacientes.component.css'],
+ 
 })
 export class PacientesComponent implements OnInit {
 
+  
   listaHistoriaClinica: Array<any> = [];
   listaTurnos: Array<any> = [];
   misPacientes: Array<any> = [];

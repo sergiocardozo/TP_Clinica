@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { MisTurnosPacienteComponent } from './mis-turnos-paciente.component';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
-import { FiltroPacientePipe } from 'src/app/pipes/filtro-paciente.pipe';
 import { EncuestaModule } from '../encuesta/encuesta.module';
 import { DirectivasModule } from 'src/app/directivas/directivas.module';
-import { MatCard, MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { LoadingModule } from '../../components/loading/loading.module';
 
 
 
@@ -20,7 +20,8 @@ import { MatDividerModule } from '@angular/material/divider';
     EncuestaModule,
     DirectivasModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    LoadingModule
   ],
   exports: [MisTurnosPacienteComponent]
 })

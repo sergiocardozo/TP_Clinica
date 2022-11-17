@@ -19,7 +19,8 @@ import { HistoriaClinicaModule } from '../../components/historia-clinica/histori
     MatProgressBarModule,
     MatButtonModule,
     FormsModule,
-    HistoriaClinicaModule
+    HistoriaClinicaModule,
+    
   ],
   exports: [MiperfilComponent]
 })

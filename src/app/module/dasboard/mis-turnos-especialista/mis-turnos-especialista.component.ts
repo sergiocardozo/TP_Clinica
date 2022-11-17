@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { TurnosService } from 'src/app/service/turnos.service';
@@ -7,10 +8,22 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-mis-turnos-especialista',
   templateUrl: './mis-turnos-especialista.component.html',
-  styleUrls: ['./mis-turnos-especialista.component.css']
+  styleUrls: ['./mis-turnos-especialista.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(40px)' }),
+        animate('800ms', style({ opacity: 1, transform: 'translateX(0)' })),
+      ]),
+      transition(':leave', [
+        animate('800ms', style({ opacity: 0, transform: 'translateX(40px)' })),
+      ]),
+    ])
+  ]
 })
 export class MisTurnosEspecialistaComponent implements OnInit {
 
+  show = true;
   color = '';
   turnoFinalizado_flag = false;
   turnoFinalizado: any;
